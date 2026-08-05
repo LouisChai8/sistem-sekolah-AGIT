@@ -19,9 +19,6 @@
 
 
 <body class="flex min-h-screen flex-col bg-[#F7F6F2] text-slate-700">
-
-
-
     {{-- Header Start--}}
 
     <header class="bg-[#16213A] text-white">
