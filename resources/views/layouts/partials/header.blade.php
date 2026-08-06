@@ -1,29 +1,32 @@
-        <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
-            @if (Route::has('login'))
-                <nav class="flex items-center justify-end gap-4">
-                    @auth
-                        <a
-                            href="{{ url('/dashboard') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
-                        >
-                            Dashboard
-                        </a>
-                    @else
-                        <a
-                            href="{{ route('login') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
-                        >
-                            Log in
-                        </a>
+ <header class="bg-[#16213A] text-white">
 
-                        @if (Route::has('register'))
-                            <a
-                                href="{{ route('register') }}"
-                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                                Register
-                            </a>
-                        @endif
-                    @endauth
-                </nav>
-            @endif
-        </header>
+        <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
+
+            <a href="" class="flex items-center gap-3">
+
+                <span>
+
+                    <span class="font-display block text-lg font-semibold leading-none">Sistem Sekolah</span>
+
+                    <span class="text-[11px] uppercase tracking-[0.2em] text-white/50">Buku Induk Siswa</span>
+
+                </span>
+
+            </a>
+            <nav class="hidden gap-8 text-sm md:flex">
+
+                <a href="#" class="text-white/55 hover:text-white">Siswa</a>
+
+                <a href="#" class="text-white/55 hover:text-white">Guru</a>
+
+                <a href="#" class="text-white/55 hover:text-white">Kelas</a>
+
+                <a href="#" class="text-white/55 hover:text-white">Jurusan</a>
+
+            </nav>
+
+        </div>
+
+        <div class="h-0.5 bg-[#A16207]"></div>
+
+    </header>

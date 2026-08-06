@@ -33,7 +33,7 @@ Route::name('students')->prefix('students')->group(function () {
 });
 
 Route::name('Teachers')->prefix('teachers')->group(function () {
-    Route::get('/', [TeachersController::class, 'index'])->name('index');
+    Route::get('/', [TeachezrsController::class, 'index'])->name('index');
 
     Route::get('/{id}', [TeachersController::class, 'show'])->name('show');
 
