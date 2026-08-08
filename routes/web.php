@@ -16,10 +16,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::name('students')->prefix('students')->group(function () {
+Route::name('students.')->prefix('students')->group(function () {
+
     Route::get('/', [StudentController::class, 'index'])->name('index');
 
-    Route::get('/{id}', [StudentController::class, 'show'])->name('show');
+    Route::get('/{id}', [StudentController::class, 'show'])->name('show')->whereNumber('id');
 
     Route::get('/create', [StudentController::class, 'create'])->name('create');
 
@@ -32,8 +33,9 @@ Route::name('students')->prefix('students')->group(function () {
     Route::delete('/{id}', [StudentController::class, 'destroy'])->name('destroy');
 });
 
-Route::name('Teachers')->prefix('teachers')->group(function () {
-    Route::get('/', [TeachezrsController::class, 'index'])->name('index');
+Route::name('teachers.')->prefix('teachers')->group(function () {
+
+    Route::get('/', [TeachersController::class, 'index'])->name('index');
 
     Route::get('/{id}', [TeachersController::class, 'show'])->name('show');
 
@@ -48,21 +50,21 @@ Route::name('Teachers')->prefix('teachers')->group(function () {
     Route::delete('/{id}', [TeachersController::class, 'destroy'])->name('destroy');
 });
 
-    Route::name('SchoolClass')->prefix('SchoolClass')->group(function () {
-    Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::name('SchoolClass.')->prefix('SchoolClass')->group(function () {
 
-    Route::get('/{id}', [ShowController::class, 'show'])->name('show');
+    Route::get('/', [IndexController::class])->name('index');
+
+    Route::get('/{id}', [ShowController::class])->name('show');
 
     Route::get('/create', [CreateController::class, 'create'])->name('create');
 
     Route::get('/{id}/edit', [EditController::class, 'edit'])->name('edit');
 
-    Route::post('/{id}', [StoreController::class, 'store'])->name('store');
+    Route::post('/', [StoreController::class, 'store'])->name('store');
 
     Route::put('/{id}', [UpdateController::class, 'update'])->name('update');
 
     Route::delete('/{id}', [DestroyController::class, 'destroy'])->name('destroy');
 });
 
-    Route::resource('Major', MajorController::class);
-        
+Route::resource('majors', MajorController::class);
