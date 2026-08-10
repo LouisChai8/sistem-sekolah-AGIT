@@ -8,7 +8,7 @@ use App\Http\Controllers\SchoolClass\StoreController;
 use App\Http\Controllers\SchoolClass\UpdateController;
 use App\Http\Controllers\SchoolClass\DestroyController;
 use App\Http\Controllers\StudentController;
-use App\Http\Controllers\TeachersController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\MajorController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,36 +35,52 @@ Route::name('students.')->prefix('students')->group(function () {
 
 Route::name('teachers.')->prefix('teachers')->group(function () {
 
-    Route::get('/', [TeachersController::class, 'index'])->name('index');
+    Route::get('/', [TeacherController::class, 'index'])->name('index');
 
-    Route::get('/{id}', [TeachersController::class, 'show'])->name('show');
+    Route::get('/{id}', [TeacherController::class, 'show'])->name('show');
 
-    Route::get('/create', [TeachersController::class, 'create'])->name('create');
+    Route::get('/create', [TeacherController::class, 'create'])->name('create');
 
-    Route::get('/{id}/edit', [TeachersController::class, 'edit'])->name('edit');
+    Route::get('/{id}/edit', [TeacherController::class, 'edit'])->name('edit');
 
-    Route::post('/', [TeachersController::class, 'store'])->name('store');
+    Route::post('/', [TeacherController::class, 'store'])->name('store');
 
-    Route::put('/{id}', [TeachersController::class, 'update'])->name('update');
+    Route::put('/{id}', [TeacherController::class, 'update'])->name('update');
 
-    Route::delete('/{id}', [TeachersController::class, 'destroy'])->name('destroy');
+    Route::delete('/{id}', [TeacherController::class, 'destroy'])->name('destroy');
 });
 
-Route::name('SchoolClass.')->prefix('SchoolClass')->group(function () {
+Route::name('classes.')->prefix('classes')->group(function () {
 
-    Route::get('/', [IndexController::class])->name('index');
-
-    Route::get('/{id}', [ShowController::class])->name('show');
+    Route::get('/', IndexController::class)->name('index');
 
     Route::get('/create', [CreateController::class, 'create'])->name('create');
 
     Route::get('/{id}/edit', [EditController::class, 'edit'])->name('edit');
+
+    Route::get('/{id}', ShowController::class)->name('show');
 
     Route::post('/', [StoreController::class, 'store'])->name('store');
 
     Route::put('/{id}', [UpdateController::class, 'update'])->name('update');
 
     Route::delete('/{id}', [DestroyController::class, 'destroy'])->name('destroy');
+
 });
 
-Route::resource('majors', MajorController::class);
+Route::name('majors.')->prefix('majors')->group(function () {
+
+    Route::get('/', [MajorController::class, 'index'])->name('index');
+
+    Route::get('/{id}', [MajorController::class, 'show'])->name('show');
+
+    Route::get('/create', [MajorController::class, 'create'])->name('create');
+
+    Route::get('/{id}/edit', [MajorController::class, 'edit'])->name('edit');
+
+    Route::post('/', [MajorController::class, 'store'])->name('store');
+
+    Route::put('/{id}', [MajorController::class, 'update'])->name('update');
+
+    Route::delete('/{id}', [MajorController::class, 'destroy'])->name('destroy');
+});

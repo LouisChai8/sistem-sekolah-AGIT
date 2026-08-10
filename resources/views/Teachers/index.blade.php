@@ -5,7 +5,7 @@
 @section('content')
 
     <x-alert type="WARNING"> 
-        Terdapat kesalahan ketika menambahkan data siswa baru ke dalam sistem sekolah.
+        Terdapat kesalahan ketika menambahkan data guru baru ke dalam sistem sekolah.
     </x-alert>
     <div class="mx-auto max-w-5xl px-6 py-10">
         <div class="mb-8 flex items-end justify-between border-b border-[#E5E3DB] pb-5">
@@ -14,13 +14,13 @@
 
                 <p class="mb-1 text-[11px] uppercase tracking-[0.2em] text-[#A16207]">Tahun Ajaran 2025/2026</p>
 
-                <h1 class="font-display text-3xl font-semibold text-[#16213A]">Daftar Siswa</h1>
+                <h1 class="font-display text-3xl font-semibold text-[#16213A]">Daftar Guru</h1>
 
             </div>
 
-            <a href="{{ route('students.create') }}"
+            <a href="{{ route('teachers.create') }}"
                 class="bg-[#16213A] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
-                Catat Siswa Baru
+                Catat Guru Baru
             </a>
         </div>
 
@@ -36,22 +36,22 @@
 
                         <th class="w-14 px-5 py-3.5 font-semibold">No.</th>
 
-                        <th class="px-5 py-3.5 font-semibold">NIS</th>
+                        <th class="px-5 py-3.5 font-semibold">NIP</th>
 
-                        <th class="px-5 py-3.5 font-semibold">Nama Siswa</th>
+                        <th class="px-5 py-3.5 font-semibold">Nama Guru</th>
 
                         <th class="px-5 py-3.5 font-semibold">Kelas</th>
 
                         <th class="px-5 py-3.5 font-semibold">Jurusan</th>
 
-                        <th class="px-5 py-3.5 text-right font-semibold">Tindakan</th>
+                        <th class="px-5 py-3.5 text-right font-semibold">Status</th>
 
                     </tr>
 
                 </thead>
 
                 <tbody>
-                    @foreach ($students as $student)
+                    @foreach ($teachers as $teachers)
                         <tr class="border-b border-[#EFEDE6] hover:bg-[#FAF9F5]">
 
                             <td class="px-5 py-4 font-display text-lg text-[#A16207]">
@@ -59,36 +59,40 @@
                             </td>
 
                             <td class="px-5 py-4 font-mono text-xs text-slate-500">
-                                {{ $student['nis'] }}
+                                {{ $teachers['nip'] }}
                             </td>
 
                             <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $student['name'] }}
+                                {{ $teachers['gender'] }}
                             </td>
 
                             <td class="px-5 py-4">
-                                {{ $student['class'] }}
+                                {{ $teachers['subject'] }}
                             </td>
 
                             <td class="px-5 py-4">
-                                {{ $student['major'] }}
+                                {{ $teachers['phone'] }}
+                            </td>
+
+                            <td class="px-5 py-4">
+                                {{ $teachers['status'] }}
                             </td>
 
                             <td class="px-5 py-4">
                                 <div class="flex justify-end gap-4 text-xs font-medium">
 
-                                    <a href="{{ route('students.show', ['id' => $student['id']]) }}"
+                                    <a href="{{ route('teachers.show', ['id' => $teachers['id']]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Lihat
                                     </a>
 
-                                    <a href="{{ route('students.edit', ['id' => $student['id']]) }}"
+                                    <a href="{{ route('teachers.edit', ['id' => $teachers['id']]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Ubah
                                     </a>
 
-                                    <form action="{{ route('students.destroy', ['id' => $student['id']]) }}" method="POST"
-                                        onsubmit="return confirm('Hapus data siswa ini dari buku induk?')">
+                                    <form action="{{ route('teachers.destroy', ['id' => $teachers['id']]) }}" method="POST"
+                                        onsubmit="return confirm('Hapus data guru ini dari buku induk?')">
 
                                         @csrf
                                         @method('DELETE')
