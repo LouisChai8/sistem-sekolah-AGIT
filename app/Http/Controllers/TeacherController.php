@@ -54,13 +54,13 @@ class TeacherController extends Controller
         ]);
     }
 
-    public function show(string $id)
-    {
-        $title = "Sistem Sekolah - Detail Guru";
-        return view('teachers.show', [
-            'title' => $title
-        ]);
-    }
+    public function show($id)
+{
+    return view('teachers.show', [
+        'title' => 'Sistem Sekolah - Detail Guru',
+        'teacher' => ['id' => $id]
+    ]);
+}
 
     public function create()
     {
@@ -71,12 +71,12 @@ class TeacherController extends Controller
     }
 
     public function edit($id)
-    {
-        $title = "Sistem Sekolah - Ubah Guru";
-        return view('teachers.edit', [
-            'title' => $title
-        ]);
-    }
+{
+    return view('teachers.edit', [
+        'title' => 'Sistem Sekolah - Ubah Guru',
+        'teacher' => ['id' => $id]
+    ]);
+}
 
     public function store()
     {

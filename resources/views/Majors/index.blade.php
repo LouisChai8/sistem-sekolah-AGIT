@@ -4,9 +4,6 @@
 
 @section('content')
 
-    <x-alert type="WARNING"> 
-        Terdapat kesalahan ketika menambahkan data jurusan baru ke dalam sistem sekolah.
-    </x-alert>
     <div class="mx-auto max-w-5xl px-6 py-10">
         <div class="mb-8 flex items-end justify-between border-b border-[#E5E3DB] pb-5">
 
@@ -51,7 +48,7 @@
                 </thead>
 
                 <tbody>
-                    @foreach ($majors as $majors)
+                    @foreach ($majors as $major)
                         <tr class="border-b border-[#EFEDE6] hover:bg-[#FAF9F5]">
 
                             <td class="px-5 py-4 font-display text-lg text-[#A16207]">
@@ -59,35 +56,35 @@
                             </td>
 
                             <td class="px-5 py-4 font-mono text-xs text-slate-500">
-                                {{ $majors['code'] }}
+                                {{ $major['code'] }}
                             </td>
 
                             <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $majors['name'] }}
+                                {{ $major['name'] }}
                             </td>
 
                             <td class="px-5 py-4">
-                                {{ $majors['description'] }}
+                                {{ $major['description'] }}
                             </td>
 
                             <td class="px-5 py-4">
-                                {{ $majors['code'] }}
+                                {{ $major['code'] }}
                             </td>
 
                             <td class="px-5 py-4">
                                 <div class="flex justify-end gap-4 text-xs font-medium">
 
-                                    <a href="{{ route('majors.show', ['major' => $majors['id']]) }}"
+                                    <a href="{{ route('majors.show', ['major' => $major['id']]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Lihat
                                     </a>
 
-                                    <a href="{{ route('majors.edit', ['major' => $majors['id']]) }}"
+                                    <a href="{{ route('majors.edit', ['major' => $major['id']]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Ubah
                                     </a>
 
-                                    <form action="{{ route('majors.destroy', ['major' => $majors['id']]) }}" method="POST"
+                                    <form action="{{ route('majors.destroy', ['major' => $major['id']]) }}" method="POST"
                                         onsubmit="return confirm('Hapus data jurusan ini dari buku induk?')">
 
                                         @csrf
@@ -111,4 +108,5 @@
             </table>
 
         </div>
+    </div>
 @endsection

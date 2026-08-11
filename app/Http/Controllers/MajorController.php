@@ -61,7 +61,8 @@ class MajorController extends Controller
     {
         $title = "Sistem Sekolah - Detail Jurusan";
         return view('majors.show', [
-            'title' => $title
+            'title' => $title,
+            'major' => ['id' => $id]
         ]);
     }
 
@@ -77,7 +78,8 @@ class MajorController extends Controller
     {
         $title = "Sistem Sekolah - Ubah Jurusan";
         return view('majors.edit', [
-            'title' => $title
+            'title' => $title,
+            'major' => ['id' => $id]
         ]);
     }
 

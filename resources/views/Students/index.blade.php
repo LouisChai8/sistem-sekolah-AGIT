@@ -4,9 +4,6 @@
 
 @section('content')
 
-    <x-alert type="WARNING"> 
-        Terdapat kesalahan ketika menambahkan data siswa baru ke dalam sistem sekolah.
-    </x-alert>
     <div class="mx-auto max-w-5xl px-6 py-10">
         <div class="mb-8 flex items-end justify-between border-b border-[#E5E3DB] pb-5">
 
@@ -44,7 +41,7 @@
 
                         <th class="px-5 py-3.5 font-semibold">Jurusan</th>
 
-                        <th class="px-5 py-3.5 text-right font-semibold">Tindakan</th>
+                        <th class="px-5 py-3.5 text-center font-semibold">Tindakan</th>
 
                     </tr>
 
@@ -74,8 +71,8 @@
                                 {{ $student['major'] }}
                             </td>
 
-                            <td class="px-5 py-4">
-                                <div class="flex justify-end gap-4 text-xs font-medium">
+                            <td class="px-5 py-4 text-center">
+                                <div class="flex justify-center gap-4 text-xs font-medium">
 
                                     <a href="{{ route('students.show', ['id' => $student['id']]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">

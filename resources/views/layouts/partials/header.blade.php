@@ -13,15 +13,28 @@
             </span>
 
         </a>
+
         <nav class="hidden gap-8 text-sm md:flex">
 
-            <a href="#" class="text-white/55 hover:text-white">Siswa</a>
+            <a href="{{ route('students.index') }}" 
+               class="{{ request()->routeIs('students.*') ? 'text-white font-medium' : 'text-white/55 hover:text-white' }}">
+                Siswa
+            </a>
 
-            <a href="#" class="text-white/55 hover:text-white">Guru</a>
+            <a href="{{ route('teachers.index') }}" 
+               class="{{ request()->routeIs('teachers.*') ? 'text-white font-medium' : 'text-white/55 hover:text-white' }}">
+                Guru
+            </a>
 
-            <a href="#" class="text-white/55 hover:text-white">Kelas</a>
+            <a href="{{ route('classes.index') }}" 
+               class="{{ request()->routeIs('classes.*') ? 'text-white font-medium' : 'text-white/55 hover:text-white' }}">
+                Kelas
+            </a>
 
-            <a href="#" class="text-white/55 hover:text-white">Jurusan</a>
+            <a href="{{ route('majors.index') }}" 
+               class="{{ request()->routeIs('majors.*') ? 'text-white font-medium' : 'text-white/55 hover:text-white' }}">
+                Jurusan
+            </a>
 
         </nav>
 

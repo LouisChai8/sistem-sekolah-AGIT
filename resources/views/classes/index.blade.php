@@ -4,9 +4,7 @@
 
 @section('content')
 
-    <x-alert type="WARNING">
-        Terdapat kesalahan ketika menambahkan data kelas baru ke dalam sistem sekolah.
-    </x-alert>
+
     <div class="mx-auto max-w-5xl px-6 py-10">
         <div class="mb-8 flex items-end justify-between border-b border-[#E5E3DB] pb-5">
 
@@ -18,7 +16,7 @@
 
             </div>
 
-            <a href="{{ route('students.create') }}"
+            <a href="{{ route('classes.create') }}"
                 class="bg-[#16213A] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
                 Catat kelas Baru
             </a>
@@ -116,4 +114,5 @@
             </table>
 
         </div>
+    </div>
 @endsection
