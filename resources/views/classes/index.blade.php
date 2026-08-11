@@ -46,6 +46,7 @@
 
                         <th class="px-5 py-3.5 font-semibold">Wali Kelas</th>
 
+                        <th class="px-5 py-3.5 text-center font-semibold">Tindakan</th>
                     </tr>
 
                 </thead>
@@ -76,9 +77,10 @@
 
                             <td class="px-5 py-4">
                                 {{ $classes['homeroom_teacher'] }}
+                            </td>
 
-                            <td class="px-5 py-4">
-                                <div class="flex justify-end gap-4 text-xs font-medium">
+                            <td class="px-5 py-4 text-center">
+                                <div class="flex justify-center gap-4 text-xs font-medium">
 
                                     <a href="{{ route('classes.show', ['id' => $classes['id']]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">

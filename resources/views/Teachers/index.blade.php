@@ -4,9 +4,6 @@
 
 @section('content')
 
-    <x-alert type="WARNING"> 
-        Terdapat kesalahan ketika menambahkan data guru baru ke dalam sistem sekolah.
-    </x-alert>
     <div class="mx-auto max-w-5xl px-6 py-10">
         <div class="mb-8 flex items-end justify-between border-b border-[#E5E3DB] pb-5">
 
@@ -40,18 +37,21 @@
 
                         <th class="px-5 py-3.5 font-semibold">Nama Guru</th>
 
-                        <th class="px-5 py-3.5 font-semibold">Kelas</th>
+                        <th class="px-5 py-3.5 font-semibold">Gender</th>
 
                         <th class="px-5 py-3.5 font-semibold">Jurusan</th>
 
-                        <th class="px-5 py-3.5 text-right font-semibold">Status</th>
+                        <th class="px-5 py-3.5 font-semibold">Nomor Telepon</th>
 
+                        <th class="px-5 py-3.5 font-semibold">Status</th>
+
+                        <th class="px-5 py-3.5 text-center font-semibold">Tindakan</th>
                     </tr>
 
                 </thead>
 
                 <tbody>
-                    @foreach ($teachers as $teachers)
+                    @foreach ($teachers as $teacher)
                         <tr class="border-b border-[#EFEDE6] hover:bg-[#FAF9F5]">
 
                             <td class="px-5 py-4 font-display text-lg text-[#A16207]">
@@ -59,39 +59,43 @@
                             </td>
 
                             <td class="px-5 py-4 font-mono text-xs text-slate-500">
-                                {{ $teachers['nip'] }}
+                                {{ $teacher['nip'] }}
+                            </td>
+
+                            <td class="px-5 py-4 font-mono text-xs text-slate-500">
+                                {{ $teacher['name'] }}
                             </td>
 
                             <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $teachers['gender'] }}
+                                {{ $teacher['gender'] }}
                             </td>
 
                             <td class="px-5 py-4">
-                                {{ $teachers['subject'] }}
+                                {{ $teacher['subject'] }}
                             </td>
 
                             <td class="px-5 py-4">
-                                {{ $teachers['phone'] }}
+                                {{ $teacher['phone'] }}
                             </td>
 
                             <td class="px-5 py-4">
-                                {{ $teachers['status'] }}
+                                <x-status-badge :status="$teacher['status']" />
                             </td>
 
                             <td class="px-5 py-4">
                                 <div class="flex justify-end gap-4 text-xs font-medium">
 
-                                    <a href="{{ route('teachers.show', ['id' => $teachers['id']]) }}"
+                                    <a href="{{ route('teachers.show', ['id' => $teacher['id']]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Lihat
                                     </a>
 
-                                    <a href="{{ route('teachers.edit', ['id' => $teachers['id']]) }}"
+                                    <a href="{{ route('teachers.edit', ['id' => $teacher['id']]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Ubah
                                     </a>
 
-                                    <form action="{{ route('teachers.destroy', ['id' => $teachers['id']]) }}" method="POST"
+                                    <form action="{{ route('teachers.destroy', ['id' => $teacher['id']]) }}" method="POST"
                                         onsubmit="return confirm('Hapus data guru ini dari buku induk?')">
 
                                         @csrf

@@ -44,7 +44,7 @@
 
                         <th class="px-5 py-3.5 font-semibold">Jurusan</th>
 
-                        <th class="px-5 py-3.5 text-right font-semibold">Tindakan</th>
+                        <th class="px-5 py-3.5 text-center font-semibold">Tindakan</th>
 
                     </tr>
 
