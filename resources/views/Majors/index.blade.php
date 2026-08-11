@@ -77,17 +77,17 @@
                             <td class="px-5 py-4">
                                 <div class="flex justify-end gap-4 text-xs font-medium">
 
-                                    <a href="{{ route('majors.show', ['id' => $majors['id']]) }}"
+                                    <a href="{{ route('majors.show', ['major' => $majors['id']]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Lihat
                                     </a>
 
-                                    <a href="{{ route('majors.edit', ['id' => $majors['id']]) }}"
+                                    <a href="{{ route('majors.edit', ['major' => $majors['id']]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Ubah
                                     </a>
 
-                                    <form action="{{ route('majors.destroy', ['id' => $majors['id']]) }}" method="POST"
+                                    <form action="{{ route('majors.destroy', ['major' => $majors['id']]) }}" method="POST"
                                         onsubmit="return confirm('Hapus data jurusan ini dari buku induk?')">
 
                                         @csrf

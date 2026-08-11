@@ -45,7 +45,7 @@ class IndexController extends Controller
             ]
 
         ];
-        return view('SchoolClass.index', [
+        return view('classes.index', [
             'title' => $title,
             'classes' => $classes
         ]); 
