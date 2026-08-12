@@ -60,9 +60,15 @@ class MajorController extends Controller
     public function show(string $id)
     {
         $title = "Sistem Sekolah - Detail Jurusan";
+        $major = [
+            'id' => $id,
+            'code' => 'AKL',
+            'name' => 'Akuntansi dan Keuangan Lembaga',
+            'description' => 'Program keahlian yang membekali murid dengan kompetensi pencatatan dan pelaporan keuangan.'
+        ];
         return view('majors.show', [
             'title' => $title,
-            'major' => ['id' => $id]
+            'major' => $major
         ]);
     }
 
@@ -76,10 +82,17 @@ class MajorController extends Controller
 
     public function edit($id)
     {
-        $title = "Sistem Sekolah - Ubah Jurusan";
+        $title = "Sistem Sekolah - Edit Jurusan";
+        $major = [
+            'id' => $id,
+            'code' => 'AKL',
+            'name' => 'Akuntansi dan Keuangan Lembaga',
+            'description' => 'Program keahlian yang membekali murid dengan kompetensi pencatatan dan pelaporan keuangan.'
+        ];
+
         return view('majors.edit', [
             'title' => $title,
-            'major' => ['id' => $id]
+            'major' => $major
         ]);
     }
 

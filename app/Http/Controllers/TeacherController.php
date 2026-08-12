@@ -55,10 +55,20 @@ class TeacherController extends Controller
     }
 
     public function show($id)
+    
 {
+    $teacher = [
+        'id' => $id,
+        'nip' => '198501012024',
+        'name' => 'Budi Santoso',
+        'gender' => 'Laki-Laki',
+        'subject' => 'Akuntansi Dasar',
+        'phone' => '081234560001',
+        'status' => 'Aktif',
+    ];
     return view('teachers.show', [
         'title' => 'Sistem Sekolah - Detail Guru',
-        'teacher' => ['id' => $id]
+        'teacher' => $teacher
     ]);
 }
 
@@ -72,9 +82,18 @@ class TeacherController extends Controller
 
     public function edit($id)
 {
+    $teacher = [
+        'id' => $id,
+        'nip' => '198501012024',
+        'name' => 'Budi Santoso',
+        'gender' => 'Laki-Laki',
+        'subject' => 'Akuntansi Dasar',
+        'phone_number' => '081234560001',
+        'status' => 'Aktif',
+    ];
     return view('teachers.edit', [
-        'title' => 'Sistem Sekolah - Ubah Guru',
-        'teacher' => ['id' => $id]
+        'title' => 'Sistem Sekolah - Edit Guru',
+        'teacher' => $teacher
     ]);
 }
 

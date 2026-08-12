@@ -31,11 +31,11 @@ Route::name('students.')->prefix('students')->group(function () {
 Route::name('teachers.')->prefix('teachers')->group(function () {
     Route::get('/', [TeacherController::class, 'index'])->name('index');
     Route::get('/create', [TeacherController::class, 'create'])->name('create');
-    Route::get('/{id}', [TeacherController::class, 'show'])->name('show')->whereNumber('id');
-    Route::get('/{id}/edit', [TeacherController::class, 'edit'])->name('edit')->whereNumber('id');
+    Route::get('/{teacher}', [TeacherController::class, 'show'])->name('show')->whereNumber('teacher');
+    Route::get('/{teacher}/edit', [TeacherController::class, 'edit'])->name('edit')->whereNumber('teacher');
     Route::post('/', [TeacherController::class, 'store'])->name('store');
-    Route::put('/{id}', [TeacherController::class, 'update'])->name('update')->whereNumber('id');
-    Route::delete('/{id}', [TeacherController::class, 'destroy'])->name('destroy')->whereNumber('id');
+    Route::put('/{teacher}', [TeacherController::class, 'update'])->name('update')->whereNumber('teacher');
+    Route::delete('/{teacher}', [TeacherController::class, 'destroy'])->name('destroy')->whereNumber('teacher');
 });
 
 
