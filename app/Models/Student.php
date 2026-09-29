@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 
 #[Table('students')]
-#[Fillable('nis','class','major')]
+#[Fillable('nis','name','gender','major','class')]
 
 class Student extends Model
 {
-
+    
 }

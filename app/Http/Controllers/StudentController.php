@@ -89,9 +89,12 @@ class StudentController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        return "Menambah data siswa baru";
+        // Validasi
+        $request->validate([
+            'nis' => ['required', 'string', 'size:4', 'unique']
+        ]);
     }
 
     public function update(string $id)

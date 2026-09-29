@@ -25,7 +25,7 @@ return new class extends Migration
     {
         Schema::table('students', function (Blueprint $table) {
             if (!Schema::hasColumn('students', 'email')) {
-                $table->string('email', 200)->unique();
+                $table->string('email', 200)->unique()->after('name');
             }
         });
     }
