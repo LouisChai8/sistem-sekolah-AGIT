@@ -30,7 +30,7 @@ class StudentController extends Controller
 
             [
                 'id' => 3,
-                'name' => 'Lyne',
+                'name' => 'Jolene Lynelle',
                 'class' => 'XII BID',
                 'major' => 'Bisnis Digital',
                 'nis' => '1122334455',
@@ -93,7 +93,11 @@ class StudentController extends Controller
     {
         // Validasi
         $request->validate([
-            'nis' => ['required', 'string', 'size:4', 'unique']
+            'nis' => ['required', 'string', 'size:4', 'unique:students,nis,1'],
+            'name' => ['required', 'string'],
+            'gender' => ['required', 'string', 'in:Laki-laki, Perempuan'],
+            'major' => ['required', 'string', 'in:AKL,TKJ,BID'],
+            'class' => ['required', 'string']
         ]);
     }
 

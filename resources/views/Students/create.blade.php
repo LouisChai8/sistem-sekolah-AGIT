@@ -26,6 +26,9 @@
                 class="mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em] text-[#16213A]">NIS</label>
             <input type="text" id="nis" name="nis" placeholder="Contoh: 2024010"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm placeholder:text-slate-400 focus:border-[#A16207] focus:bg-white focus:outline-none">
+            @error('nis')
+                <span class="text-red-500 py-2>{{ $message }}</span>
+            @enderror
         </div>
 
 
@@ -34,6 +37,9 @@
                 Lengkap</label>
             <input type="text" id="name" name="name" placeholder="Nama lengkap siswa"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm placeholder:text-slate-400 focus:border-[#A16207] focus:bg-white focus:outline-none">
+            @error('name')
+                <span class="text-red-500 py-2>{{ $message }}</span>
+            @enderror
         </div>
 
 
@@ -42,9 +48,12 @@
                 Kelamin</label>
             <select id="gender" name="gender"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
-                <option value="L">Laki-laki</option>
-                <option value="P">Perempuan</option>
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
             </select>
+            @error('gender')
+                <span class="text-red-500 py-2>{{ $message }}</span>
+            @enderror
         </div>
 
 
@@ -58,6 +67,9 @@
                 <option value="">TKJ</option>
                 <option value="">BiD</option>
             </select>
+            @error('major')
+                <span class="text-red-500 py-2>{{ $message }}</span>
+            @enderror
         </div>
 
 
@@ -66,6 +78,9 @@
                 class="mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em] text-[#16213A]">Kelas</label>
             <input type="text" id="class" name="class" placeholder="Contoh: X AKL 1"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm placeholder:text-slate-400 focus:border-[#A16207] focus:bg-white focus:outline-none">
+            @error('class')
+                <span class="text-red-500 py-2>{{ $message }}</span>
+            @enderror
         </div>
 
 
