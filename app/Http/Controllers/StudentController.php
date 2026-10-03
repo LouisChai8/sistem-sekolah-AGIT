@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -11,49 +12,21 @@ class StudentController extends Controller
     public function index()
     {
         $title = "Sistem Sekolah - Daftar Siswa";
-        $students = [
-            [
-                'id' => 1,
-                'name' => 'Andi',
-                'class' => 'XII TKJ 1',
-                'major' => 'Teknik Komputer dan Jaringan',
-                'nis' => '1234567890',
-            ],
 
-            [
-                'id' => 2,
-                'name' => 'Budi',
-                'class' => 'XII AKL 1',
-                'major' => 'Akuntansi',
-                'nis' => '0987654321',
-            ],
+        $students = Student::select(['id', 'nis', 'name', 'class', 'major'])
+            ->get();
 
-            [
-                'id' => 3,
-                'name' => 'Jolene Lynelle',
-                'class' => 'XII BID',
-                'major' => 'Bisnis Digital',
-                'nis' => '1122334455',
-            ],
-        ];
+
         return view('students.index', [
             'title' => $title,
             'students' => $students
         ]);
     }
 
-    public function show(string $id)
+    public function show(Student $student)
     {
+
         $title = "Sistem Sekolah - Detail Siswa";
-    
-        $student = [
-            'id' => $id,
-            'name' => 'Budi Ariyanto',
-            'nis' => '2024001',
-            'gender' => 'Laki-laki',
-            'major' => 'RPL',
-            'class' => 'XII AKL 1'
-        ];
 
         return view('students.show', [
             'title' => $title,
@@ -69,45 +42,58 @@ class StudentController extends Controller
         ]);
     }
 
-    public function edit($id)
+    public function edit(Student $student)
     {
         $title = "Sistem Sekolah - Ubah Siswa";
 
-        // Pass dummy/matched student data with the requested $id
-        $student = [
-            'id' => $id,
-            'name' => 'Budi Ariyanto',
-            'nis' => '2024001',
-            'gender' => 'L',
-            'major' => 'AKL',
-            'class' => 'XII AKL 1'
-        ];
-
         return view('students.edit', [
             'title' => $title,
-            'student' => $student // <-- Added missing $student variable!
+            'student' => $student
         ]);
     }
 
     public function store(Request $request)
     {
         // Validasi
-        $request->validate([
-            'nis' => ['required', 'string', 'size:4', 'unique:students,nis,1'],
+        $validatedRequest = $request->validate([
+            'nis' => ['required', 'string', 'size:4', 'unique:students,nis'],
             'name' => ['required', 'string'],
-            'gender' => ['required', 'string', 'in:Laki-laki, Perempuan'],
+            'gender' => ['required', 'string', 'in:Laki-laki,Perempuan'],
             'major' => ['required', 'string', 'in:AKL,TKJ,BID'],
             'class' => ['required', 'string']
         ]);
+
+        // Tambahkan data siswa ke database (contoh)
+        Student::create($validatedRequest);
+
+        // Handle If Success
+        return redirect()->route('students.index');
     }
 
-    public function update(string $id)
+    public function update(Student $student, Request $request)
     {
-        return "Mengubah data siswa dengan ID: {$id}";
+        // Validasi
+        $validatedRequest = $request->validate([
+            'nis' => ['required', 'string', 'size:4', 'unique:students,nis,' . $student->id],
+            'name' => ['required', 'string'],
+            'gender' => ['required', 'string', 'in:Laki-laki,Perempuan'],
+            'major' => ['required', 'string', 'in:AKL,TKJ,BID'],
+            'class' => ['required', 'string']
+        ]);
+
+        // Update data siswa
+        $student->update($validatedRequest);
+
+        // Handle If Success
+        return redirect()->route('students.index');
     }
 
-    public function destroy(string $id)
+    public function destroy(Student $student)
     {
-        return "Menghapus data siswa dengan ID: {$id}";
+        // Delete Data 
+        $student->delete();
+
+        // Handle If Success
+        return redirect()->route('students.index');
     }
 }
