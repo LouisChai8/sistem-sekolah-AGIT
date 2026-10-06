@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Student\UpdateRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Requests\Student\StoreRequest;
@@ -65,16 +66,10 @@ class StudentController extends Controller
         return redirect()->route('students.index');
     }
 
-    public function update(Student $student, Request $request)
+    public function update(Student $student, UpdateRequest $request)
     {
         // Validasi
-        $validatedRequest = $request->validate([
-            'nis' => ['required', 'string', 'size:4', 'unique:students,nis,' . $student->id],
-            'name' => ['required', 'string'],
-            'gender' => ['required', 'string', 'in:Laki-laki,Perempuan'],
-            'major' => ['required', 'string', 'in:AKL,TKJ,BID'],
-            'class' => ['required', 'string']
-        ]);
+        $validatedRequest = $request->validated();
 
         // Update data siswa
         $student->update($validatedRequest);
