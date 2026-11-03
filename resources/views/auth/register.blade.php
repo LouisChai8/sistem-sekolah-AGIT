@@ -19,7 +19,7 @@
             <p class="mt-1 text-sm text-slate-500">Buat akun baru untuk mulai menggunakan sistem.</p>
         </div>
 
-        <form action="#" method="POST" class="space-y-6 border border-[#E5E3DB] bg-white p-8">
+        <form action="{{ route('register-post') }}" method="POST" class="space-y-6 border border-[#E5E3DB] bg-white p-8">
             @csrf
 
             <div>

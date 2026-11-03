@@ -21,8 +21,13 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function registerPost()
+    public function registerPost(Request $request)
     {
-
+        // Validate Request
+        $validatedRequest = $request->validate([
+            'name' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', 'unique:users,email'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
     }
 }

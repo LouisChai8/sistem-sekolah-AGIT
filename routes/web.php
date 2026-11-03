@@ -20,9 +20,9 @@ Route::get('/', function () {
 
 // Authentications
 Route::get('/login', [AuthController::class, 'loginView'])->name('login-view');
-Route::get('/login', [AuthController::class, 'loginPost'])->name('login-post');
-Route::get('/login', [AuthController::class, 'registerView'])->name('register-view');
-Route::get('/login', [AuthController::class, 'loginPost'])->name('register-post');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('login-post');
+Route::get('/register', [AuthController::class, 'registerView'])->name('register-view');
+Route::post('/register', [AuthController::class, 'registerPost'])->name('register-post');
 
 // Student Management Routes
 Route::name('students.')->prefix('students')->group(function () {
