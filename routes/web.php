@@ -19,14 +19,14 @@ Route::get('/', function () {
 
 
 // Authentications
-Route::get('/login', [AuthController::class, 'loginView'])->name('login-view');
-Route::post('/login', [AuthController::class, 'loginPost'])->name('login-post');
-Route::get('/register', [AuthController::class, 'registerView'])->name('register-view');
-Route::post('/register', [AuthController::class, 'registerPost'])->name('register-post');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/login', [AuthController::class, 'loginView'])->name('login-view')->middleware('guest');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('login-post')->middleware('guest');
+Route::get('/register', [AuthController::class, 'registerView'])->name('register-view')->middleware('guest');
+Route::post('/register', [AuthController::class, 'registerPost'])->name('register-post')->middleware('guest');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Student Management Routes
-Route::name('students.')->prefix('students')->group(function () {
+Route::name('students.')->middleware(['role:student,teacher', 'auth'])->prefix('students')->group(function () {
     Route::get('/', [StudentController::class, 'index'])->name('index');
     Route::get('/create', [StudentController::class, 'create'])->name('create');
     Route::get('/{student}', [StudentController::class, 'show'])->name('show')->whereNumber('id');
@@ -37,7 +37,7 @@ Route::name('students.')->prefix('students')->group(function () {
 });
 
 // Teacher Management Routes
-Route::name('teachers.')->prefix('teachers')->group(function () {
+Route::name('teachers.')->middleware(['role:teacher', 'auth'])->prefix('teachers')->group(function () {
     Route::get('/', [TeacherController::class, 'index'])->name('index');
     Route::get('/create', [TeacherController::class, 'create'])->name('create');
     Route::get('/{teacher}', [TeacherController::class, 'show'])->name('show')->whereNumber('teacher');
@@ -48,7 +48,7 @@ Route::name('teachers.')->prefix('teachers')->group(function () {
 });
 
 // School Class Management Routes
-Route::name('classes.')->prefix('classes')->group(function () {
+Route::name('classes.')->middleware(['role:teacher', 'auth'])->prefix('classes')->group(function () {
     Route::get('/', IndexController::class)->name('index');
     Route::get('/create', [CreateController::class, 'create'])->name('create');
     Route::post('/', StoreController::class)->name('store');
@@ -59,4 +59,4 @@ Route::name('classes.')->prefix('classes')->group(function () {
 });
 
 // Major Management Routes
-Route::resource('majors', MajorController::class);
+Route::resource('majors', MajorController::class)->middleware(['role:teacher', 'auth']);
