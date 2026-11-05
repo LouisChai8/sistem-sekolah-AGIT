@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -11,9 +13,21 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function loginPost()
+    public function loginPost(Request $request)
     {
-        
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if(Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->route('students.index');
+        }
+
+        return back()->withErrors([
+            'email' => "Email or Password doesn't match",
+        ]);
     }
 
     public function registerView()
@@ -29,5 +43,25 @@ class AuthController extends Controller
             'email' => ['required', 'string', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        // Send Data
+        User::create([
+            'name' => $validatedRequest['name'],
+            'email' => $validatedRequest['email'],
+            'password' => bcrypt($validatedRequest['password']),
+            'role' => 'student',
+        ]);
+
+        // Handle if Success
+        return redirect()->route('login-view');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login-view');
     }
 }
