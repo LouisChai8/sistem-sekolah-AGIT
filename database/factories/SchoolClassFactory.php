@@ -3,13 +3,16 @@
 namespace Database\Factories;
 
 use App\Models\Model;
+use App\Models\SchoolClass;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends Factory<Model>
  */
-class ClassFactory extends Factory
+class SchoolClassFactory extends Factory
 {
+    protected $model = SchoolClass::class;
+
     /**
      * Define the model's default state.
      *
@@ -26,11 +29,12 @@ class ClassFactory extends Factory
             'XI TKJ 1',
             'XI TKJ 2',
             'XII TKJ 1',
+            'XII TKJ 2',
             'XII TKJ 3',
             'X BiD 1',
             'X BiD 2',
             'XI BiD',
-            'XII BiD',
+            'XII BiD'
         ];
         return [
             'name' => fake()->unique()->randomElement($schoolClasses),

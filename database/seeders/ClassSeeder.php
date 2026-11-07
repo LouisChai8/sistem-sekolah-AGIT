@@ -13,6 +13,6 @@ class ClassSeeder extends Seeder
      */
     public function run(): void
     {
-        SchoolClass::factory()->count(10)->create();
+        SchoolClass::factory()->count(14)->create();
     }
 }
