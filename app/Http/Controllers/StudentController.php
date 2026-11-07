@@ -6,22 +6,41 @@ use App\Http\Requests\Student\UpdateRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Requests\Student\StoreRequest;
+use function Illuminate\Support\years;
 
 class StudentController extends Controller
 {
 
 
-    public function index()
+    public function index(Request $request)
     {
         $title = "Sistem Sekolah - Daftar Siswa";
 
+        $search = $request->query('search');
+        $class = $request->query('class');
+        $major = $request->query('major');
+
         $students = Student::select(['id', 'nis', 'name', 'class', 'major'])
-            ->get();
+            ->when($search, function ($query, $search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%")
+                        ->orWhere('nis', 'like', "%{$search}%");
+                });
+            })
+            ->when($class, fn($query, $class) => $query->where('class', '=', $class))
+            ->when($major, fn($query, $major) => $query->where('major', '=', $major))
+            ->paginate(10)
+            ->withQueryString();
+
+        $schoolClasses = ['X AKL', 'XI AKL', 'XII AKL', 'X TKJ 1', 'XII TKJ 2', 'X BiD', 'XII TKj 1', 'XII TKj 2', 'XII TKj 3'];
+        $majors = ['AKL', 'BiD', 'TKJ'];
 
 
         return view('students.index', [
             'title' => $title,
-            'students' => $students
+            'students' => $students,
+            'schoolClasses' => $schoolClasses,
+            'majors' => $majors
         ]);
     }
 
