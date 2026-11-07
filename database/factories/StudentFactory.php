@@ -2,7 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Major;
 use App\Models\Student;
+use App\Models\User;
+use App\Models\SchoolClass;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,8 +25,9 @@ class StudentFactory extends Factory
             'nis' => fake()->unique()->numerify('####'),
             'name' => fake()->name(),
             'gender' => fake()->randomElement(['Laki-laki', 'Perempuan']),
-            'class' => fake()->randomElement(['X AKL', 'XI AKL', 'XII AKL', 'X BiD', 'XI BiD', 'XII BiD', 'X TKJ', 'XI TKJ', 'XII TKJ 1', 'XII TKJ 2']),
-            'major' => fake()->randomElement(['AKL', 'BiD', 'TKJ']),
+            'user_id' => User::factory(),
+            'major_id' => Major::inRandomOrder()->first()->id,
+            'class_id' => SchoolClass::inRandomOrder()->first()->id,
         ];
     }
 }
